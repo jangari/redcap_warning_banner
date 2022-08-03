@@ -1,0 +1,49 @@
+{
+    "name": "Warning Banner",
+    "namespace": "INTERSECT\\WarningBanner",
+    "description": "Displays a warning banner in certain contexts, configured by an administrator. Examples include warning survey participants that the project is still in development, warning users that the project is a practice project and should not be used to collect data.",
+    "permissions": [
+        "redcap_every_page_top",
+        "redcap_survey_page_top"
+    ],
+    "authors": [
+        {
+            "name": "Aidan Wilson",
+            "email": "aidan.wilson@intersect.org.au",
+            "institution": "Intersect Australia"
+        }
+    ],
+    "system-settings": [
+        {
+            "key": "non-production-warning-text",
+            "name": "Non-production warning test",
+            "type": "text"
+        },
+        {
+            "key": "practice-project-warning-text",
+            "name": "Practice project warning text",
+            "type": "text"
+        }
+    ],
+    "project-settings": [
+        {
+            "key": "non-production-warning-text-project",
+            "name": "Non-production warning test-project",
+            "type": "text"
+        },
+        {
+            "key": "practice-project-warning-text",
+            "name": "Practice project warning text",
+            "type": "text"
+        },
+        {
+            "key": "disable-project",
+            "name": "Disable on this project",
+            "type": "checkbox"
+        }        }
+    ],
+    "compatibility": {
+        "redcap-version-min": "8.0.3",
+        "redcap-version-max": ""
+   }
+}
