@@ -1,17 +1,10 @@
 <?php
-/**
- * @file
- * Provides ExternalModule class for Warning Banner
- */
 
 namespace INTERSECT\WarningBanner;
 
 use ExternalModules\AbstractExternalModule;
 use Project;
 
-/**
- * ExternalModule class for Modify Contact Admin Button.
- */
 class WarningBanner extends \ExternalModules\AbstractExternalModule {
 
     function redcap_module_configure_button_display($project_id = null) {
@@ -19,9 +12,6 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
         return defined("SUPER_USER") && SUPER_USER == 1 ? true : null;
     }
 
-    /**
-     * @inheritdoc
-     */
     function redcap_survey_page_top($project_id, $record, $instrument, $event_id, $group_id, $survey_hash, $response_id, $repeat_instance)
     {
         $show_banner = false;
@@ -83,6 +73,7 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
         };
         </script>";
     }
+    }
 
 function redcap_every_page_top($project_id=null) {
     if (PAGE === "Surveys/invite_participants.php" && !($_GET["email_log"]) == '1'){
@@ -142,5 +133,6 @@ function redcap_every_page_top($project_id=null) {
         };
         </script>";
     }
+}
 }
 }

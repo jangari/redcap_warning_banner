@@ -2,6 +2,7 @@
     "name": "Warning Banner",
     "namespace": "INTERSECT\\WarningBanner",
     "description": "Displays a warning banner in certain contexts, configured by an administrator. Examples include warning survey participants that the project is still in development, warning users that the project is a practice project and should not be used to collect data.",
+    "framework-version": 7,
     "permissions": [
         "redcap_every_page_top",
         "redcap_survey_page_top"
@@ -102,9 +103,5 @@
             "name": "Practice project warning text for survey respondents. Default: This project is only for practice/testing purposes and is not for collecting real data.<br/>Unless you are a pilot tester, you should STOP NOW.",
             "type": "text"
         }
-    ],
-    "compatibility": {
-        "redcap-version-min": "8.0.3",
-        "redcap-version-max": ""
-   }
+    ]
 }
