@@ -15,32 +15,104 @@
     ],
     "system-settings": [
         {
-            "key": "non-production-warning-text",
-            "name": "Non-production warning test",
+            "key": "enable-dev-warning-user",
+            "name": "Enable warning for development projects (excludes practice projects) on project pages",
+            "type" "checkbox",
+        },
+        {
+            "key": "dev-warning-user-text",
+            "name": "Development warning text for project users. Default: This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.",
+            "type": "text",
+            "branchingLogic": {
+                "field": "enable-dev-warning-user",
+                "value": "1"
+            }
+        },
+        {
+            "key": "enable-dev-warning-survey",
+            "name": "Enable warning for development projects (excludes practice projects) on survey pages",
+            "type" "checkbox",
+        },
+        {
+            "key": "dev-warning-survey-text",
+            "name": "Development warning text for survey respondents. Default: This project is not yet approved to collect real data.<br/>Unless you are a pilot tester, you should STOP NOW.",
             "type": "text"
         },
         {
-            "key": "practice-project-warning-text",
-            "name": "Practice project warning text",
+            "key": "enable-practice-warning-user",
+            "name": "Enable warning for practice projects on project pages",
+            "type" "checkbox",
+        },
+        {
+            "key": "practice-warning-user-text",
+            "name": "Practice project warning text for project users. Default: This project is only for practice/testing purposes and is not for collecting real data.<br/>You must NOT send survey invitations to research participants.",
+            "type": "text"
+        },
+        {
+            "key": "enable-practice-warning-survey",
+            "name": "Enable warning for practice projects on survey pages",
+            "type" "checkbox",
+        },
+        {
+            "key": "practice-warning-survey-text",
+            "name": "Practice project warning text for survey respondents. Default: This project is only for practice/testing purposes and is not for collecting real data.<br/>Unless you are a pilot tester, you should STOP NOW.",
             "type": "text"
         }
+
     ],
     "project-settings": [
         {
-            "key": "non-production-warning-text-project",
-            "name": "Non-production warning test-project",
+            "key": "override-project",
+            "name": "Override system settings on this project",
+            "type": "checkbox",
+        },
+        {
+            "key": "enable-dev-warning-user-project",
+            "name": "Enable warning for development projects (excludes practice projects) on project pages",
+            "type" "checkbox",
+        },
+        {
+            "key": "dev-warning-user-text-project",
+            "name": "Development warning text for project users. Default: This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.",
+            "type": "text",
+            "branchingLogic": {
+                "field": "enable-dev-warning-user",
+                "value": "1"
+            }
+        },
+        {
+            "key": "enable-dev-warning-survey-project",
+            "name": "Enable warning for development projects (excludes practice projects) on survey pages",
+            "type" "checkbox",
+        },
+        {
+            "key": "dev-warning-survey-text-project",
+            "name": "Development warning text for survey respondents. Default: This project is not yet approved to collect real data.<br/>Unless you are a pilot tester, you should STOP NOW.",
             "type": "text"
         },
         {
-            "key": "practice-project-warning-text",
-            "name": "Practice project warning text",
+            "key": "enable-practice-warning-user-project",
+            "name": "Enable warning for practice projects on project pages",
+            "type" "checkbox",
+        },
+        {
+            "key": "practice-warning-user-text-project",
+            "name": "Practice project warning text for project users. Default: This project is only for practice/testing purposes and is not for collecting real data.<br/>You must NOT send survey invitations to research participants.",
             "type": "text"
         },
         {
-            "key": "disable-project",
-            "name": "Disable on this project",
-            "type": "checkbox"
-        }        }
+            "key": "enable-practice-warning-survey-project",
+            "name": "Enable warning for practice projects on survey pages",
+            "type" "checkbox",
+        },
+        {
+            "key": "practice-warning-survey-text-project",
+            "name": "Practice project warning text for survey respondents. Default: This project is only for practice/testing purposes and is not for collecting real data.<br/>Unless you are a pilot tester, you should STOP NOW.",
+            "type": "text"
+        }
+
+
+
     ],
     "compatibility": {
         "redcap-version-min": "8.0.3",
