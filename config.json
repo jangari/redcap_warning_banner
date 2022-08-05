@@ -31,7 +31,7 @@
         {
             "key": "enable-dev-warning-survey",
             "name": "Enable warning for development projects (excludes practice projects) on survey pages",
-            "type": "checkbox",
+            "type": "checkbox"
         },
         {
             "key": "dev-warning-survey-text",
@@ -41,7 +41,7 @@
         {
             "key": "enable-practice-warning-user",
             "name": "Enable warning for practice projects on project pages",
-            "type": "checkbox",
+            "type": "checkbox"
         },
         {
             "key": "practice-warning-user-text",
@@ -51,7 +51,7 @@
         {
             "key": "enable-practice-warning-survey",
             "name": "Enable warning for practice projects on survey pages",
-            "type": "checkbox",
+            "type": "checkbox"
         },
         {
             "key": "practice-warning-survey-text",
@@ -64,12 +64,12 @@
         {
             "key": "override-project",
             "name": "Override system settings on this project",
-            "type": "checkbox",
+            "type": "checkbox"
         },
         {
             "key": "enable-dev-warning-user-project",
             "name": "Enable warning for development projects (excludes practice projects) on project pages",
-            "type": "checkbox",
+            "type": "checkbox"
         },
         {
             "key": "dev-warning-user-text-project",
@@ -83,7 +83,7 @@
         {
             "key": "enable-dev-warning-survey-project",
             "name": "Enable warning for development projects (excludes practice projects) on survey pages",
-            "type": "checkbox",
+            "type": "checkbox"
         },
         {
             "key": "dev-warning-survey-text-project",
@@ -93,7 +93,7 @@
         {
             "key": "enable-practice-warning-user-project",
             "name": "Enable warning for practice projects on project pages",
-            "type": "checkbox",
+            "type": "checkbox"
         },
         {
             "key": "practice-warning-user-text-project",
@@ -103,16 +103,13 @@
         {
             "key": "enable-practice-warning-survey-project",
             "name": "Enable warning for practice projects on survey pages",
-            "type": "checkbox",
+            "type": "checkbox"
         },
         {
             "key": "practice-warning-survey-text-project",
             "name": "Practice project warning text for survey respondents. Default: This project is only for practice/testing purposes and is not for collecting real data.<br/>Unless you are a pilot tester, you should STOP NOW.",
             "type": "text"
         }
-
-
-
     ],
     "compatibility": {
         "redcap-version-min": "8.0.3",
