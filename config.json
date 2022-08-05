@@ -22,11 +22,7 @@
         {
             "key": "dev-warning-user-text",
             "name": "Development warning text for project users. Default: This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.",
-            "type": "text",
-            "branchingLogic": {
-                "field": "enable-dev-warning-user",
-                "value": "1"
-            }
+            "type": "text"
         },
         {
             "key": "enable-dev-warning-survey",
@@ -74,11 +70,7 @@
         {
             "key": "dev-warning-user-text-project",
             "name": "Development warning text for project users. Default: This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.",
-            "type": "text",
-            "branchingLogic": {
-                "field": "enable-dev-warning-user",
-                "value": "1"
-            }
+            "type": "text"
         },
         {
             "key": "enable-dev-warning-survey-project",
