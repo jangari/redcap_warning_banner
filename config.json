@@ -1,7 +1,7 @@
 {
     "name": "Warning Banner",
     "namespace": "INTERSECT\\WarningBanner",
-    "description": "Displays a warning banner in certain contexts, configured by an administrator. Examples include warning survey participants that the project is still in development, warning users that the project is a practice project and should not be used to collect data.",
+    "description": "Allows administrators to display a warning banner to survey respondents and/or project users on the invite participants page, if the project is of purpose 'Practice', or otherwise, is still in development mode. Each warning is separately dis/enabled, and can have customised warning text.",
     "framework-version": 7,
     "permissions": [
         "redcap_every_page_top",
@@ -91,6 +91,7 @@
     "project-settings": [
         {
             "key": "override-project",
+            "super-users-only": true,
             "name": "Override system settings on this project",
             "type": "checkbox"
         },
@@ -100,6 +101,7 @@
                 "value": true
             },
             "key": "s3",
+            "super-users-only": true,
             "name": "<strong>Warnings for project pages</strong>",
             "type": "descriptive"
         },
@@ -109,6 +111,7 @@
                 "value": true
             },
             "key": "convert-add-edit-red-project",
+            "super-users-only": true,
             "name": "Convert <span class='yellow' class='yellow'>yellow</span> warning on Add/Edit record page to <span class='red'>red</span>",
             "type": "checkbox"
         },
@@ -118,6 +121,7 @@
                 "value": true
             },
             "key": "enable-dev-warning-user-project",
+            "super-users-only": true,
             "name": "Enable warning for development projects on project pages (excludes practice projects)",
             "type": "checkbox"
         },
@@ -135,6 +139,7 @@
                 ]
             },
             "key": "dev-warning-user-text-project",
+            "super-users-only": true,
             "name": "<strong>Development warning text for project users.</strong><br/>Default: <em>This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.</em>",
             "type": "textarea"
         },
@@ -144,6 +149,7 @@
                 "value": true
             },
             "key": "enable-practice-warning-user-project",
+            "super-users-only": true,
             "name": "Enable warning for practice projects on project pages",
             "type": "checkbox"
         },
@@ -161,6 +167,7 @@
                 ]
             },
             "key": "practice-warning-user-text-project",
+            "super-users-only": true,
             "name": "<strong>Practice project warning text for project users.</strong><br/>Default: <em>This project is only for practice/testing purposes and is not for collecting real data.<br/>You must NOT send survey invitations to research participants.</em>",
             "type": "textarea"
         },
@@ -170,6 +177,7 @@
                 "value": true
             },
             "key": "s4",
+            "super-users-only": true,
             "name": "<strong>Warnings for survey pages</strong>",
             "type": "descriptive"
         },
@@ -179,6 +187,7 @@
                 "value": true
             },
             "key": "enable-dev-warning-survey-project",
+            "super-users-only": true,
             "name": "Enable warning for development projects on survey pages (excludes practice projects)",
             "type": "checkbox"
         },
@@ -196,6 +205,7 @@
                 ]
             },
             "key": "dev-warning-survey-text-project",
+            "super-users-only": true,
             "name": "<strong>Development warning text for survey respondents.</strong><br/>Default: <em>This project is not yet approved to collect real data.<br/>Unless you are a pilot tester, you should STOP NOW.</em>",
             "type": "textarea"
         },
@@ -205,6 +215,7 @@
                 "value": true
             },
             "key": "enable-practice-warning-survey-project",
+            "super-users-only": true,
             "name": "Enable warning for practice projects on survey pages",
             "type": "checkbox"
         },
@@ -222,6 +233,7 @@
                 ]
             },
             "key": "practice-warning-survey-text-project",
+            "super-users-only": true,
             "name": "<strong>Practice project warning text for survey respondents.</strong><br/>Default: <em>This project is only for practice/testing purposes and is not for collecting real data.<br/>Unless you are a pilot tester, you should STOP NOW.</em>",
             "type": "textarea"
         }

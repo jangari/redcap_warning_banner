@@ -1,6 +1,12 @@
 # REDCap Warning Banner
 
-This REDCap External Module allows administrators to display a warning banner to survey respondents, and users on the invite participants page, if the project is of purpose 'Practice', or otherwise, is still in development mode.
+This REDCap External Module allows administrators to display a warning banner to survey respondents, and project users on the invite participants page, if the project is of purpose 'Practice', or otherwise, is still in development mode. Each warning is separately enabled, and can have customised warning text.
+
+![Warning Banner screenshot](WarningBanner.png)
+
+## Why?
+
+The built-in protections against users accidentally sending survey links and invitations to respondents before their project has been moved to production, are not strong. There is a yellow warning on the Add/Edit Records page warning users that they should not collect real data until the project is in production. This module allows administrators to add more visibility to their site's business rules, and thus improve compliance.
 
 ## Installation
 
@@ -8,10 +14,13 @@ Install the module from the REDCap module repository and enable in the Control C
 
 ## Usage
 
-Administrators may configure the module to display a warning on practice/just for fun projects, and/or a warning on projects that are not in production mode. They may also configure the warning text that is displayed for each.
+Administrators may separately enable warnings for practice projects, or projects of other purposes that are in development, and separately for project users, or survey respondents. Administrators may additionally convert the existing warning on the Add/Edit Records page from yellow to red.
 
-Administrators may also override this on a per-project level, either disabling the warnings or replacing the warning text.
+Administrators may also override these on a per-project level, either disabling the warnings or replacing the warning text.
 
 ## TODO
 
 - Allow configuration options to modify the banner style, or select from several templates.
+- Allow different Font Awesome warning glyphs
+- Allow different warning heading text
+- Allow different dismiss text
