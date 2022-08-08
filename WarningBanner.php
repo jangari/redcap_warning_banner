@@ -23,15 +23,15 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
 
         $override_project = $this -> getProjectSetting('override-project');
         if ($override_project){
-            $enable_dev_warning_survey = $this -> getProjectSetting('enable_dev_warning_survey_project');
-            $dev_warning_survey_text = $this -> getProjectSetting('dev_warning_survey_text_project');
-            $enable_practice_warning_survey = $this -> getProjectSetting('enable_practice_warning_survey_project');
-            $practice_warning_survey_text = $this -> getProjectSetting('practice_warning_survey_text_project');
+            $enable_dev_warning_survey = $this -> getProjectSetting('enable-dev-warning-survey-project');
+            $dev_warning_survey_text = $this -> getProjectSetting('dev-warning-survey-text-project');
+            $enable_practice_warning_survey = $this -> getProjectSetting('enable-practice-warning-survey-project');
+            $practice_warning_survey_text = $this -> getProjectSetting('practice-warning-survey-text-project');
         } else {
-            $enable_dev_warning_survey = $this -> getProjectSetting('enable_dev_warning_survey');
-            $dev_warning_survey_text = $this -> getProjectSetting('dev_warning_survey_text');
-            $enable_practice_warning_survey = $this -> getProjectSetting('enable_practice_warning_survey');
-            $practice_warning_survey_text = $this -> getProjectSetting('practice_warning_survey_text');
+            $enable_dev_warning_survey = $this -> getProjectSetting('enable-dev-warning-survey');
+            $dev_warning_survey_text = $this -> getProjectSetting('dev-warning-survey-text');
+            $enable_practice_warning_survey = $this -> getProjectSetting('enable-practice-warning-survey');
+            $practice_warning_survey_text = $this -> getProjectSetting('practice-warning-survey-text');
         }
 
         // Apply default text
@@ -66,9 +66,9 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
             margin: 10px 10px 10px 10px;
         }
         </style>";
-        echo "<div id='warning-banner' class='warn-bnr' onclick='dismiss-warn-bnr()'><p><i class='fas fa-exclamation-triangle'></i> WARNING <i class='fas fa-exclamation-triangle'></i><br/>".$warning."<br/><span style='font-style: italic; font-size: 80%; text-align: right;'>Dismiss</span></p></div>";
+        echo "<div id='warning-banner' class='warn-bnr' onclick='dissmissWarnBnr()'><p><i class='fas fa-exclamation-triangle'></i> WARNING <i class='fas fa-exclamation-triangle'></i><br/>".$warning."<br/><span style='font-style: italic; font-size: 80%; text-align: right;'>Dismiss</span></p></div>";
         echo "<script>
-        function dismiss-warn-bnr(){
+        function dissmissWarnBnr(){
             $('div[id=\"warning-banner\"]').hide()
         };
         </script>";
@@ -76,24 +76,25 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
     }
 
 function redcap_every_page_top($project_id=null) {
-    if (PAGE === "Surveys/invite_participants.php" && !($_GET["email_log"]) == '1'){
 
         $show_banner = false;
         $projectVals = Project::getProjectVals();
         $status = $projectVals["status"];
         $purpose = $projectVals["purpose"];
-
         $override_project = $this -> getProjectSetting('override-project');
+
+    if (PAGE === "Surveys/invite_participants.php" && !($_GET["email_log"]) == '1'){ // Don't run on the Survey Invitation Log page
+
         if ($override_project){
-            $enable_dev_warning_user = $this -> getProjectSetting('enable_dev_warning_user_project');
-            $dev_warning_user_text = $this -> getProjectSetting('dev_warning_user_text_project');
-            $enable_practice_warning_user = $this -> getProjectSetting('enable_practice_warning_user_project');
-            $practice_warning_user_text = $this -> getProjectSetting('practice_warning_user_text_project');
+            $enable_dev_warning_user = $this -> getProjectSetting('enable-dev-warning-user-project');
+            $dev_warning_user_text = $this -> getProjectSetting('dev-warning-user-text-project');
+            $enable_practice_warning_user = $this -> getProjectSetting('enable-practice-warning-user-project');
+            $practice_warning_user_text = $this -> getProjectSetting('practice-warning-user-text-project');
         } else {
-            $enable_dev_warning_user = $this -> getProjectSetting('enable_dev_warning_user');
-            $dev_warning_user_text = $this -> getProjectSetting('dev_warning_user_text');
-            $enable_practice_warning_user = $this -> getProjectSetting('enable_practice_warning_user');
-            $practice_warning_user_text = $this -> getProjectSetting('practice_warning_user_text');
+            $enable_dev_warning_user = $this -> getProjectSetting('enable-dev-warning-user');
+            $dev_warning_user_text = $this -> getProjectSetting('dev-warning-user-text');
+            $enable_practice_warning_user = $this -> getProjectSetting('enable-practice-warning-user');
+            $practice_warning_user_text = $this -> getProjectSetting('practice-warning-user-text');
         }
         $dev_warning_user_text = ($dev_warning_user_text != "") ? $dev_warning_user_text : "This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.";
         $practice_warning_user_text = ($practice_warning_user_text != "") ? $practice_warning_user_text : "This project is only for practice/testing purposes and is not for collecting real data.<br/>You must NOT send survey invitations to research participants.";
@@ -126,13 +127,29 @@ function redcap_every_page_top($project_id=null) {
             margin: 10px 10px 10px 10px;
         }
         </style>";
-        echo "<div id='warning-banner' class='warn-bnr' onclick='dismiss-warn-bnr()'><p><span style='font-size: 120%; font-style: bold;'><i class='fas fa-exclamation-triangle'></i> WARNING <i class='fas fa-exclamation-triangle'></i></span><br/>".$warning."<br/><span style='font-style: italic; font-size: 80%; text-align: right;'>Dismiss</span></p></div>";
+        echo "<div id='warning-banner' class='warn-bnr' onclick='dissmissWarnBnr()'><p><span style='font-size: 120%; font-style: bold;'><i class='fas fa-exclamation-triangle'></i> WARNING <i class='fas fa-exclamation-triangle'></i></span><br/>".$warning."<br/><span style='font-style: italic; font-size: 80%; text-align: right;'>Dismiss</span></p></div>";
         echo "<script>
-        function dismiss-warn-bnr(){
+        function dissmissWarnBnr(){
             $('div[id=\"warning-banner\"]').hide()
         };
         </script>";
     }
 }
+if (PAGE === "DataEntry/record_home.php"){
+    /* echo APP_PATH_IMAGES; */
+    /* echo DIRECTORY_SEPARATOR; */
+    // Convert yellow warning on add/edit record page to red. 
+    $add_edit_red = ($override_project) ? $this -> getProjectSetting('convert-add-edit-red-project') : $this -> getProjectSetting('convert-add-edit-red');
+    /* echo var_dump($this -> getProjectSetting('add-edit-red'), $override_project); */
+    if ($status == 0 && $add_edit_red) {
+        echo "<script type='text/javascript'>
+            $(document).ready(function(){
+            var warning = $('div.projhdr').siblings('div.yellow')
+            warning.children('img').attr('src','" . APP_PATH_IMAGES . "exclamation_red.png')
+            warning.removeClass('yellow').addClass('red')
+            });
+            </script>";
+        }
+    }
 }
 }

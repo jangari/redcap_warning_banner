@@ -16,24 +16,28 @@
     ],
     "system-settings": [
         {
-            "key": "enable-dev-warning-user",
-            "name": "Enable warning for development projects (excludes practice projects) on project pages",
-            "type": "checkbox",
+            "key": "s1",
+            "name": "<strong>Warnings for project pages</strong>",
+            "type": "descriptive"
         },
         {
-            "key": "dev-warning-user-text",
-            "name": "Development warning text for project users. Default: This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.",
-            "type": "text"
-        },
-        {
-            "key": "enable-dev-warning-survey",
-            "name": "Enable warning for development projects (excludes practice projects) on survey pages",
+            "key": "convert-add-edit-red",
+            "name": "Convert <span class='yellow' class='yellow'>yellow</span> warning on Add/Edit record page to <span class='red'>red</span>",
             "type": "checkbox"
         },
         {
-            "key": "dev-warning-survey-text",
-            "name": "Development warning text for survey respondents. Default: This project is not yet approved to collect real data.<br/>Unless you are a pilot tester, you should STOP NOW.",
-            "type": "text"
+            "key": "enable-dev-warning-user",
+            "name": "Enable warning for development projects on project pages (excludes practice projects)",
+            "type": "checkbox"
+        },
+        {
+            "key": "dev-warning-user-text",
+            "name": "<strong>Development warning text for project users.</strong><br/>Default: <em>This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.</em>",
+            "type": "textarea",
+            "branchingLogic": {
+                "field": "enable-dev-warning-user",
+                "value": true
+            }
         },
         {
             "key": "enable-practice-warning-user",
@@ -41,9 +45,32 @@
             "type": "checkbox"
         },
         {
+            "branchingLogic": {
+                "field": "enable-practice-warning-user",
+                "value": true
+            },
             "key": "practice-warning-user-text",
-            "name": "Practice project warning text for project users. Default: This project is only for practice/testing purposes and is not for collecting real data.<br/>You must NOT send survey invitations to research participants.",
-            "type": "text"
+            "name": "<strong>Practice project warning text for project users.</strong><br/>Default: <em>This project is only for practice/testing purposes and is not for collecting real data.<br/>You must NOT send survey invitations to research participants.</em>",
+            "type": "textarea"
+        },
+        {
+            "key": "s2",
+            "name": "<strong>Warnings for survey pages</strong>",
+            "type": "descriptive"
+        },
+        {
+            "key": "enable-dev-warning-survey",
+            "name": "Enable warning for development projects on survey pages (excludes practice projects)",
+            "type": "checkbox"
+        },
+        {
+            "branchingLogic": {
+                "field": "enable-dev-warning-survey",
+                "value": true
+            },
+            "key": "dev-warning-survey-text",
+            "name": "<strong>Development warning text for survey respondents.</strong><br/>Default: <em>This project is not yet approved to collect real data.<br/>Unless you are a pilot tester, you should STOP NOW.</em>",
+            "type": "textarea"
         },
         {
             "key": "enable-practice-warning-survey",
@@ -51,9 +78,13 @@
             "type": "checkbox"
         },
         {
+            "branchingLogic": {
+                "field": "enable-practice-warning-survey",
+                "value": true
+            },
             "key": "practice-warning-survey-text",
-            "name": "Practice project warning text for survey respondents. Default: This project is only for practice/testing purposes and is not for collecting real data.<br/>Unless you are a pilot tester, you should STOP NOW.",
-            "type": "text"
+            "name": "<strong>Practice project warning text for survey respondents.</strong><br/>Default: <em>This project is only for practice/testing purposes and is not for collecting real data.<br/>Unless you are a pilot tester, you should STOP NOW.</em>",
+            "type": "textarea"
         }
 
     ],
@@ -64,44 +95,135 @@
             "type": "checkbox"
         },
         {
+            "branchingLogic": {
+                "field": "override-project",
+                "value": true
+            },
+            "key": "s3",
+            "name": "<strong>Warnings for project pages</strong>",
+            "type": "descriptive"
+        },
+        {
+            "branchingLogic": {
+                "field": "override-project",
+                "value": true
+            },
+            "key": "convert-add-edit-red-project",
+            "name": "Convert <span class='yellow' class='yellow'>yellow</span> warning on Add/Edit record page to <span class='red'>red</span>",
+            "type": "checkbox"
+        },
+        {
+            "branchingLogic": {
+                "field": "override-project",
+                "value": true
+            },
             "key": "enable-dev-warning-user-project",
-            "name": "Enable warning for development projects (excludes practice projects) on project pages",
+            "name": "Enable warning for development projects on project pages (excludes practice projects)",
             "type": "checkbox"
         },
         {
+            "branchingLogic": {
+                "conditions": [
+                    {
+                        "field": "override-project",
+                        "value": true
+                    },
+                    {
+                        "field": "enable-dev-warning-user-project",
+                        "value": true
+                    }
+                ]
+            },
             "key": "dev-warning-user-text-project",
-            "name": "Development warning text for project users. Default: This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.",
-            "type": "text"
+            "name": "<strong>Development warning text for project users.</strong><br/>Default: <em>This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.</em>",
+            "type": "textarea"
         },
         {
-            "key": "enable-dev-warning-survey-project",
-            "name": "Enable warning for development projects (excludes practice projects) on survey pages",
-            "type": "checkbox"
-        },
-        {
-            "key": "dev-warning-survey-text-project",
-            "name": "Development warning text for survey respondents. Default: This project is not yet approved to collect real data.<br/>Unless you are a pilot tester, you should STOP NOW.",
-            "type": "text"
-        },
-        {
+            "branchingLogic": {
+                "field": "override-project",
+                "value": true
+            },
             "key": "enable-practice-warning-user-project",
             "name": "Enable warning for practice projects on project pages",
             "type": "checkbox"
         },
         {
+            "branchingLogic": {
+                "conditions": [
+                    {
+                        "field": "override-project",
+                        "value": true
+                    },
+                    {
+                        "field": "enable-practice-warning-user-project",
+                        "value": true
+                    }
+                ]
+            },
             "key": "practice-warning-user-text-project",
-            "name": "Practice project warning text for project users. Default: This project is only for practice/testing purposes and is not for collecting real data.<br/>You must NOT send survey invitations to research participants.",
-            "type": "text"
+            "name": "<strong>Practice project warning text for project users.</strong><br/>Default: <em>This project is only for practice/testing purposes and is not for collecting real data.<br/>You must NOT send survey invitations to research participants.</em>",
+            "type": "textarea"
         },
         {
+            "branchingLogic": {
+                "field": "override-project",
+                "value": true
+            },
+            "key": "s4",
+            "name": "<strong>Warnings for survey pages</strong>",
+            "type": "descriptive"
+        },
+        {
+            "branchingLogic": {
+                "field": "override-project",
+                "value": true
+            },
+            "key": "enable-dev-warning-survey-project",
+            "name": "Enable warning for development projects on survey pages (excludes practice projects)",
+            "type": "checkbox"
+        },
+        {
+            "branchingLogic": {
+                "conditions": [
+                    {
+                        "field": "override-project",
+                        "value": true
+                    },
+                    {
+                        "field": "enable-dev-warning-survey-project",
+                        "value": true
+                    }
+                ]
+            },
+            "key": "dev-warning-survey-text-project",
+            "name": "<strong>Development warning text for survey respondents.</strong><br/>Default: <em>This project is not yet approved to collect real data.<br/>Unless you are a pilot tester, you should STOP NOW.</em>",
+            "type": "textarea"
+        },
+        {
+            "branchingLogic": {
+                "field": "override-project",
+                "value": true
+            },
             "key": "enable-practice-warning-survey-project",
             "name": "Enable warning for practice projects on survey pages",
             "type": "checkbox"
         },
         {
+            "branchingLogic": {
+                "conditions": [
+                    {
+                        "field": "override-project",
+                        "value": true
+                    },
+                    {
+                        "field": "enable-practice-warning-survey-project",
+                        "value": true
+                    }
+                ]
+            },
             "key": "practice-warning-survey-text-project",
-            "name": "Practice project warning text for survey respondents. Default: This project is only for practice/testing purposes and is not for collecting real data.<br/>Unless you are a pilot tester, you should STOP NOW.",
-            "type": "text"
+            "name": "<strong>Practice project warning text for survey respondents.</strong><br/>Default: <em>This project is only for practice/testing purposes and is not for collecting real data.<br/>Unless you are a pilot tester, you should STOP NOW.</em>",
+            "type": "textarea"
         }
     ]
 }
