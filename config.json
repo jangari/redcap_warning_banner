@@ -1,7 +1,7 @@
 {
     "name": "Warning Banner",
     "namespace": "INTERSECT\\WarningBanner",
-    "description": "Allows administrators to display a warning banner to survey respondents and/or project users on the invite participants page, if the project is of purpose 'Practice', or otherwise, is still in development mode. Each warning is separately dis/enabled, and can have customised warning text.",
+    "description": "Displays a warning banner in certain contexts, configured by an administrator. Examples include warning survey participants that the project is still in development, warning users that the project is a practice project and should not be used to collect data.",
     "framework-version": 7,
     "permissions": [
         "redcap_every_page_top",
@@ -33,7 +33,7 @@
         {
             "key": "dev-warning-user-text",
             "name": "<strong>Development warning text for project users.</strong><br/>Default: <em>This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.</em>",
-            "type": "textarea",
+            "type": "rich-text",
             "branchingLogic": {
                 "field": "enable-dev-warning-user",
                 "value": true
@@ -51,7 +51,7 @@
             },
             "key": "practice-warning-user-text",
             "name": "<strong>Practice project warning text for project users.</strong><br/>Default: <em>This project is only for practice/testing purposes and is not for collecting real data.<br/>You must NOT send survey invitations to research participants.</em>",
-            "type": "textarea"
+            "type": "rich-text"
         },
         {
             "key": "s2",
@@ -70,7 +70,7 @@
             },
             "key": "dev-warning-survey-text",
             "name": "<strong>Development warning text for survey respondents.</strong><br/>Default: <em>This project is not yet approved to collect real data.<br/>Unless you are a pilot tester, you should STOP NOW.</em>",
-            "type": "textarea"
+            "type": "rich-text"
         },
         {
             "key": "enable-practice-warning-survey",
@@ -84,7 +84,7 @@
             },
             "key": "practice-warning-survey-text",
             "name": "<strong>Practice project warning text for survey respondents.</strong><br/>Default: <em>This project is only for practice/testing purposes and is not for collecting real data.<br/>Unless you are a pilot tester, you should STOP NOW.</em>",
-            "type": "textarea"
+            "type": "rich-text"
         }
 
     ],
@@ -141,7 +141,7 @@
             "key": "dev-warning-user-text-project",
             "super-users-only": true,
             "name": "<strong>Development warning text for project users.</strong><br/>Default: <em>This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.</em>",
-            "type": "textarea"
+            "type": "rich-text"
         },
         {
             "branchingLogic": {
@@ -169,7 +169,7 @@
             "key": "practice-warning-user-text-project",
             "super-users-only": true,
             "name": "<strong>Practice project warning text for project users.</strong><br/>Default: <em>This project is only for practice/testing purposes and is not for collecting real data.<br/>You must NOT send survey invitations to research participants.</em>",
-            "type": "textarea"
+            "type": "rich-text"
         },
         {
             "branchingLogic": {
@@ -207,7 +207,7 @@
             "key": "dev-warning-survey-text-project",
             "super-users-only": true,
             "name": "<strong>Development warning text for survey respondents.</strong><br/>Default: <em>This project is not yet approved to collect real data.<br/>Unless you are a pilot tester, you should STOP NOW.</em>",
-            "type": "textarea"
+            "type": "rich-text"
         },
         {
             "branchingLogic": {
@@ -235,7 +235,7 @@
             "key": "practice-warning-survey-text-project",
             "super-users-only": true,
             "name": "<strong>Practice project warning text for survey respondents.</strong><br/>Default: <em>This project is only for practice/testing purposes and is not for collecting real data.<br/>Unless you are a pilot tester, you should STOP NOW.</em>",
-            "type": "textarea"
+            "type": "rich-text"
         }
     ]
 }

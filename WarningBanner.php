@@ -35,8 +35,8 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
         }
 
         // Apply default text
-        $dev_warning_survey_text = ($dev_warning_survey_text != "") ? $dev_warning_survey_text : "This project is not yet approved to collect real data.<br/>Unless you are a pilot tester, you should STOP NOW.";
-        $practice_warning_survey_text = ($practice_warning_survey_text != "") ? $practice_warning_survey_text : "This project is only for practice/testing purposes and is not for collecting real data.<br/>Unless you are a pilot tester, you should STOP NOW.";
+        $dev_warning_survey_text = ($dev_warning_survey_text != "") ? $dev_warning_survey_text : "<p>This project is not yet approved to collect real data.<br/>Unless you are a pilot tester, you should STOP NOW.</p>";
+        $practice_warning_survey_text = ($practice_warning_survey_text != "") ? $practice_warning_survey_text : "<p>This project is only for practice/testing purposes and is not for collecting real data.<br/>Unless you are a pilot tester, you should STOP NOW.</p>";
 
         if ($purpose == 0 && $enable_practice_warning_survey){
             $warning = $practice_warning_survey_text;
@@ -66,7 +66,7 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
             margin: 10px 10px 10px 10px;
         }
         </style>";
-        echo "<div id='warning-banner' class='warn-bnr' onclick='dissmissWarnBnr()'><p><i class='fas fa-exclamation-triangle'></i> WARNING <i class='fas fa-exclamation-triangle'></i><br/>".$warning."<br/><span style='font-style: italic; font-size: 80%; text-align: right;'>Dismiss</span></p></div>";
+        echo "<div id='warning-banner' class='warn-bnr' onclick='dissmissWarnBnr()'><p><span style='font-size: 120%; font-style: bold;'><i class='fas fa-exclamation-triangle'></i> WARNING <i class='fas fa-exclamation-triangle'></i></span></p>".$warning."<p style='font-style: italic; font-size: 80%; text-align: right;'>Dismiss</p></div>";
         echo "<script>
         function dissmissWarnBnr(){
             $('div[id=\"warning-banner\"]').hide()
@@ -96,8 +96,8 @@ function redcap_every_page_top($project_id=null) {
             $enable_practice_warning_user = $this -> getProjectSetting('enable-practice-warning-user');
             $practice_warning_user_text = $this -> getProjectSetting('practice-warning-user-text');
         }
-        $dev_warning_user_text = ($dev_warning_user_text != "") ? $dev_warning_user_text : "This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.";
-        $practice_warning_user_text = ($practice_warning_user_text != "") ? $practice_warning_user_text : "This project is only for practice/testing purposes and is not for collecting real data.<br/>You must NOT send survey invitations to research participants.";
+        $dev_warning_user_text = ($dev_warning_user_text != "") ? $dev_warning_user_text : "<p>This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.</p>";
+        $practice_warning_user_text = ($practice_warning_user_text != "") ? $practice_warning_user_text : "<p>This project is only for practice/testing purposes and is not for collecting real data.<br/>You must NOT send survey invitations to research participants.</p>";
 
         if ($purpose == 0 && $enable_practice_warning_user){
             $warning = $practice_warning_user_text;
@@ -127,7 +127,7 @@ function redcap_every_page_top($project_id=null) {
             margin: 10px 10px 10px 10px;
         }
         </style>";
-        echo "<div id='warning-banner' class='warn-bnr' onclick='dissmissWarnBnr()'><p><span style='font-size: 120%; font-style: bold;'><i class='fas fa-exclamation-triangle'></i> WARNING <i class='fas fa-exclamation-triangle'></i></span><br/>".$warning."<br/><span style='font-style: italic; font-size: 80%; text-align: right;'>Dismiss</span></p></div>";
+        echo "<div id='warning-banner' class='warn-bnr' onclick='dissmissWarnBnr()'><p><span style='font-size: 120%; font-style: bold;'><i class='fas fa-exclamation-triangle'></i> WARNING <i class='fas fa-exclamation-triangle'></i></span></p>".$warning."<p style='font-style: italic; font-size: 80%; text-align: right;'>Dismiss</p></div>";
         echo "<script>
         function dissmissWarnBnr(){
             $('div[id=\"warning-banner\"]').hide()
