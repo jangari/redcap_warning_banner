@@ -18,9 +18,10 @@ Administrators may separately enable warnings for practice projects, or projects
 
 Administrators may also override these on a per-project level, either disabling the warnings or replacing the warning text.
 
+## Localisation
+
+This module supports localisation through the REDCap External Module Framework's Internationalisation (i18n) features. All configuration options, default warning text, and module name and description, may be translated by duplicating the file lang/English.ini to your local language and replacing the values of each text parameter. If you translate this module to a new language, consider contributing your translation to this repository so that it can be included in future releases for other sites.
+
 ## TODO
 
 - Allow configuration options to modify the banner style, or select from several templates.
-- Allow different Font Awesome warning glyphs
-- Allow different warning heading text
-- Allow different dismiss text
