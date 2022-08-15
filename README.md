@@ -2,11 +2,19 @@
 
 This REDCap External Module allows administrators to display a warning banner to survey respondents, and project users on the invite participants page, if the project is of purpose 'Practice', or otherwise, is still in development mode. Each warning is separately enabled, and can have customised warning text.
 
-![Warning Banner screenshot](WarningBanner.png)
+Warnings can be displayed on Survey Distribution Tools pages:
+
+<img src="WarningBanner.png" style="width: 800px; border: 1px solid;"/>
+
+And survey pages:
+
+<img src="WarningBanner_survey.png" style="width: 800px; border: 1px solid;"/>
 
 ## Why?
 
-The built-in protections against users accidentally sending survey links and invitations to respondents before their project has been moved to production, are not strong. There is a yellow warning on the Add/Edit Records page warning users that they should not collect real data until the project is in production. This module allows administrators to add more visibility to their site's business rules, and thus improve compliance.
+The built-in protections against users accidentally sending survey links and invitations to respondents before their project has been moved to production, are not strong. There is a yellow warning on the Add/Edit Records page warning users that they should not collect real data until the project is in production, but such warnings do not appear in all places where a user may accidentally distribute a survey to respondents, and even where they do appear, they may be ignored.
+
+This module allows administrators to add more visibility to their site's business rules, and thus improve compliance.
 
 ## Installation
 
@@ -16,7 +24,7 @@ Install the module from the REDCap module repository and enable in the Control C
 
 Administrators may separately enable warnings for practice projects, or projects of other purposes that are in development, and separately for project users, or survey respondents. Administrators may additionally convert the existing warning on the Add/Edit Records page from yellow to red.
 
-Administrators may also override these on a per-project level, either disabling the warnings or replacing the warning text.
+Administrators may also override these settings on a per-project level, either disabling the warnings or replacing the warning text.
 
 ## Localisation
 
