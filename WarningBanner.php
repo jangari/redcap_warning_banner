@@ -49,7 +49,7 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
         // Build and show
         if ($show_banner) {
         echo "<div id='warning-banner' class='red' style='width:100%;margin:15px 0 25px;'>
-        <img src='/redcap_v12.5.5/Resources/images/exclamation_red.png' alt=''>
+        <img src='". APP_PATH_IMAGES ."exclamation_red.png' alt=''>
         <span style='font-size:14px;'><b>".$this->tt("msg_warning").":</b> ".$warning."</span></div>";
         }
     }
@@ -94,7 +94,7 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
             // Build and show
             if ($show_banner) {
             echo "<div id='warning-banner' class='red' style='width:100%;max-width:902px;margin:15px 0 25px;display:none;'>
-            <img src='/redcap_v12.5.5/Resources/images/exclamation_red.png' alt=''>
+            <img src='". APP_PATH_IMAGES ."exclamation_red.png' alt=''>
             <span style='font-size:14px;'><b>".$this->tt("msg_warning").":</b> ".$warning."</span></div>";
             echo "<script type='text/javascript'>
                 $(document).ready(function(){
