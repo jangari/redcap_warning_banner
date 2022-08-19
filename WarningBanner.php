@@ -48,7 +48,7 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
 
         // Build and show
         if ($show_banner) {
-        echo "<div id='warning-banner' class='red' style='width:100%;margin:15px 0 25px;'>
+        echo "<div id='warning-banner' class='red' style='margin:15px 15px 15px;'>
         <img src='". APP_PATH_IMAGES ."exclamation_red.png' alt=''>
         <span style='font-size:14px;'><b>".$this->tt("msg_warning").":</b> ".$warning."</span></div>";
         }
@@ -93,14 +93,14 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
 
             // Build and show
             if ($show_banner) {
-            echo "<div id='warning-banner' class='red' style='width:100%;max-width:902px;margin:15px 0 25px;display:none;'>
+            echo "<div id='warning-banner' class='red' style='width:100%;max-width:902px;margin:15px 0px 15px;display:none;'>
             <img src='". APP_PATH_IMAGES ."exclamation_red.png' alt=''>
             <span style='font-size:14px;'><b>".$this->tt("msg_warning").":</b> ".$warning."</span></div>";
             echo "<script type='text/javascript'>
                 $(document).ready(function(){
                     var banner = $('div#warning-banner');
                     var url_field = $('input#longurl').parent();
-                    banner.detach().appendTo(url_field);
+                    banner.detach().insertBefore(url_field);
                     var participant_list = $('div#partlist_outerdiv');
                     banner.insertBefore(participant_list);
                     banner.show();
@@ -109,7 +109,7 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
         }
     }
 
-    // Convert iexisting yellow warning to red.
+    // Convert existing yellow warning to red.
     if (PAGE === "DataEntry/record_home.php"){
         $add_edit_red = ($override_project) ? $this -> getProjectSetting('convert-add-edit-red-project') : $this -> getProjectSetting('convert-add-edit-red');
         if ($status == 0 && $add_edit_red) {
