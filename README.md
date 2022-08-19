@@ -22,9 +22,9 @@ Install the module from the REDCap module repository and enable in the Control C
 
 ## Usage
 
-Administrators may separately enable warnings for practice projects, or projects of other purposes that are in development, and separately for project users, or survey respondents. Administrators may additionally convert the existing warning on the Add/Edit Records page from yellow to red.
+Administrators may separately enable, and customise, warnings for practice projects, or projects of other purposes that are in development, and separately for project users, or survey respondents. Administrators may additionally convert the existing warning on the Add/Edit Records page from yellow to red.
 
-Administrators may also override these settings on a per-project level, either disabling the warnings or replacing the warning text.
+Administrators may also override these settings on a per-project level, either disabling the warnings or customising the warning text.
 
 ## Localisation
 
