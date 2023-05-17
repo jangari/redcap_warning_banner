@@ -33,3 +33,10 @@ This module supports localisation through the REDCap External Module Framework's
 ## TODO
 
 - Allow configuration options to modify the banner style, or select from several templates.
+
+## Changelog
+
+| Version | Description                                                                                           |
+| ------- | --------------------                                                                                  |
+| v1.0.0  | Initial release.                                                                                      |
+| v1.1.0  | Adds ability to configure warning colour, using built-in REDCap CSS classes.                          |
