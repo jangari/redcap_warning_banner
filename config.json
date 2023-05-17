@@ -36,6 +36,54 @@
             "type": "checkbox"
         },
         {
+            "key": "dev-warning-user-col",
+            "name": "Colour for development warning text for users",
+            "tt_name": "dev-warning-user-col",
+            "type": "dropdown",
+            "choices": [
+                {
+                    "name": "None",
+                    "value": "null"
+                },
+                {
+                    "name": "Red",
+                    "value": "red"
+                },
+                {
+                    "name": "Orange",
+                    "value": "orange"
+                },
+                {
+                    "name": "Yellow",
+                    "value": "yellow"
+                },
+                {
+                    "name": "Green",
+                    "value": "green"
+                },
+                {
+                    "name": "Darkgreen",
+                    "value": "darkgreen"
+                },
+                {
+                    "name": "Blue",
+                    "value": "blue"
+                },
+                {
+                    "name": "Brown",
+                    "value": "brown"
+                },
+                {
+                    "name": "Gray",
+                    "value": "gray"
+                }
+            ],
+            "branchingLogic": {
+                "field": "enable-dev-warning-user",
+                "value": true
+            }
+        },
+        {
             "key": "dev-warning-user-text",
             "name": "<strong>Development warning text for project users.</strong><br/>Default: <em>This project is not yet approved to collect real data.<br/>You must NOT send survey invitations until the project has been approved by an administrator.<br/>You may test surveys yourself or send to pilot testers.</em>",
             "tt_name": "dev-warning-user-text",
@@ -50,6 +98,54 @@
             "name": "Enable warning for practice projects on project pages",
             "tt_name": "enable-practice-warning-user",
             "type": "checkbox"
+        },
+        {
+            "key": "practice-warning-user-col",
+            "name": "Colour for practice project warning text for users",
+            "tt_name": "practice-warning-user-col",
+            "type": "dropdown",
+            "choices": [
+                {
+                    "name": "None",
+                    "value": "null"
+                },
+                {
+                    "name": "Red",
+                    "value": "red"
+                },
+                {
+                    "name": "Orange",
+                    "value": "orange"
+                },
+                {
+                    "name": "Yellow",
+                    "value": "yellow"
+                },
+                {
+                    "name": "Green",
+                    "value": "green"
+                },
+                {
+                    "name": "Darkgreen",
+                    "value": "darkgreen"
+                },
+                {
+                    "name": "Blue",
+                    "value": "blue"
+                },
+                {
+                    "name": "Brown",
+                    "value": "brown"
+                },
+                {
+                    "name": "Gray",
+                    "value": "gray"
+                }
+            ],
+            "branchingLogic": {
+                "field": "enable-practice-warning-user",
+                "value": true
+            }
         },
         {
             "branchingLogic": {
@@ -74,6 +170,54 @@
             "type": "checkbox"
         },
         {
+            "key": "dev-warning-survey-col",
+            "name": "Colour for development warning text for survey respondents",
+            "tt_name": "dev-warning-survey-col",
+            "type": "dropdown",
+            "choices": [
+                {
+                    "name": "None",
+                    "value": "null"
+                },
+                {
+                    "name": "Red",
+                    "value": "red"
+                },
+                {
+                    "name": "Orange",
+                    "value": "orange"
+                },
+                {
+                    "name": "Yellow",
+                    "value": "yellow"
+                },
+                {
+                    "name": "Green",
+                    "value": "green"
+                },
+                {
+                    "name": "Darkgreen",
+                    "value": "darkgreen"
+                },
+                {
+                    "name": "Blue",
+                    "value": "blue"
+                },
+                {
+                    "name": "Brown",
+                    "value": "brown"
+                },
+                {
+                    "name": "Gray",
+                    "value": "gray"
+                }
+            ],
+            "branchingLogic": {
+                "field": "enable-dev-warning-survey",
+                "value": true
+            }
+        },
+        {
             "branchingLogic": {
                 "field": "enable-dev-warning-survey",
                 "value": true
@@ -90,6 +234,54 @@
             "type": "checkbox"
         },
         {
+            "key": "practice-warning-survey-col",
+            "name": "Colour for practice project warning text for survey respondents",
+            "tt_name": "practice-warning-survey-col",
+            "type": "dropdown",
+            "choices": [
+                {
+                    "name": "None",
+                    "value": "null"
+                },
+                {
+                    "name": "Red",
+                    "value": "red"
+                },
+                {
+                    "name": "Orange",
+                    "value": "orange"
+                },
+                {
+                    "name": "Yellow",
+                    "value": "yellow"
+                },
+                {
+                    "name": "Green",
+                    "value": "green"
+                },
+                {
+                    "name": "Darkgreen",
+                    "value": "darkgreen"
+                },
+                {
+                    "name": "Blue",
+                    "value": "blue"
+                },
+                {
+                    "name": "Brown",
+                    "value": "brown"
+                },
+                {
+                    "name": "Gray",
+                    "value": "gray"
+                }
+            ],
+            "branchingLogic": {
+                "field": "enable-practice-warning-survey",
+                "value": true
+            }
+        },
+        {
             "branchingLogic": {
                 "field": "enable-practice-warning-survey",
                 "value": true
@@ -99,7 +291,6 @@
             "tt_name": "practice-warning-survey-text",
             "type": "textarea"
         }
-
     ],
     "project-settings": [
         {
@@ -143,6 +334,62 @@
             "type": "checkbox"
         },
         {
+            "key": "dev-warning-user-col-project",
+            "name": "Colour for development warning text for users",
+            "tt_name": "dev-warning-user-col",
+            "type": "dropdown",
+            "choices": [
+                {
+                    "name": "None",
+                    "value": "null"
+                },
+                {
+                    "name": "Red",
+                    "value": "red"
+                },
+                {
+                    "name": "Orange",
+                    "value": "orange"
+                },
+                {
+                    "name": "Yellow",
+                    "value": "yellow"
+                },
+                {
+                    "name": "Green",
+                    "value": "green"
+                },
+                {
+                    "name": "Darkgreen",
+                    "value": "darkgreen"
+                },
+                {
+                    "name": "Blue",
+                    "value": "blue"
+                },
+                {
+                    "name": "Brown",
+                    "value": "brown"
+                },
+                {
+                    "name": "Gray",
+                    "value": "gray"
+                }
+            ],
+            "branchingLogic": {
+                "conditions": [
+                    {
+                        "field": "override-project",
+                        "value": true
+                    },
+                    {
+                        "field": "enable-dev-warning-user-project",
+                        "value": true
+                    }
+                ]
+            }
+        },
+        {
             "branchingLogic": {
                 "conditions": [
                     {
@@ -171,6 +418,62 @@
             "name": "Enable warning for practice projects on project pages",
             "tt_name": "enable-practice-warning-user",
             "type": "checkbox"
+        },
+        {
+            "key": "practice-warning-user-col-project",
+            "name": "Colour for practice project warning text for users",
+            "tt_name": "practice-warning-user-col",
+            "type": "dropdown",
+            "choices": [
+                {
+                    "name": "None",
+                    "value": "null"
+                },
+                {
+                    "name": "Red",
+                    "value": "red"
+                },
+                {
+                    "name": "Orange",
+                    "value": "orange"
+                },
+                {
+                    "name": "Yellow",
+                    "value": "yellow"
+                },
+                {
+                    "name": "Green",
+                    "value": "green"
+                },
+                {
+                    "name": "Darkgreen",
+                    "value": "darkgreen"
+                },
+                {
+                    "name": "Blue",
+                    "value": "blue"
+                },
+                {
+                    "name": "Brown",
+                    "value": "brown"
+                },
+                {
+                    "name": "Gray",
+                    "value": "gray"
+                }
+            ],
+            "branchingLogic": {
+                "conditions": [
+                    {
+                        "field": "override-project",
+                        "value": true
+                    },
+                    {
+                        "field": "enable-practice-warning-user-project",
+                        "value": true
+                    }
+                ]
+            }
         },
         {
             "branchingLogic": {
@@ -214,6 +517,62 @@
             "type": "checkbox"
         },
         {
+            "key": "dev-warning-survey-col-project",
+            "name": "Colour for development warning text for survey respondents",
+            "tt_name": "dev-warning-survey-col",
+            "type": "dropdown",
+            "choices": [
+                {
+                    "name": "None",
+                    "value": "null"
+                },
+                {
+                    "name": "Red",
+                    "value": "red"
+                },
+                {
+                    "name": "Orange",
+                    "value": "orange"
+                },
+                {
+                    "name": "Yellow",
+                    "value": "yellow"
+                },
+                {
+                    "name": "Green",
+                    "value": "green"
+                },
+                {
+                    "name": "Darkgreen",
+                    "value": "darkgreen"
+                },
+                {
+                    "name": "Blue",
+                    "value": "blue"
+                },
+                {
+                    "name": "Brown",
+                    "value": "brown"
+                },
+                {
+                    "name": "Gray",
+                    "value": "gray"
+                }
+            ],
+            "branchingLogic": {
+                "conditions": [
+                    {
+                        "field": "override-project",
+                        "value": true
+                    },
+                    {
+                        "field": "enable-dev-warning-survey-project",
+                        "value": true
+                    }
+                ]
+            }
+        },
+        {
             "branchingLogic": {
                 "conditions": [
                     {
@@ -242,6 +601,62 @@
             "name": "Enable warning for practice projects on survey pages",
             "tt_name": "enable-practice-warning-survey",
             "type": "checkbox"
+        },
+        {
+            "key": "practice-warning-survey-col-project",
+            "name": "Colour for practice warning text for survey respondents",
+            "tt_name": "practice-warning-survey-col",
+            "type": "dropdown",
+            "choices": [
+                {
+                    "name": "None",
+                    "value": "null"
+                },
+                {
+                    "name": "Red",
+                    "value": "red"
+                },
+                {
+                    "name": "Orange",
+                    "value": "orange"
+                },
+                {
+                    "name": "Yellow",
+                    "value": "yellow"
+                },
+                {
+                    "name": "Green",
+                    "value": "green"
+                },
+                {
+                    "name": "Darkgreen",
+                    "value": "darkgreen"
+                },
+                {
+                    "name": "Blue",
+                    "value": "blue"
+                },
+                {
+                    "name": "Brown",
+                    "value": "brown"
+                },
+                {
+                    "name": "Gray",
+                    "value": "gray"
+                }
+            ],
+            "branchingLogic": {
+                "conditions": [
+                    {
+                        "field": "override-project",
+                        "value": true
+                    },
+                    {
+                        "field": "enable-practice-warning-survey-project",
+                        "value": true
+                    }
+                ]
+            }
         },
         {
             "branchingLogic": {
