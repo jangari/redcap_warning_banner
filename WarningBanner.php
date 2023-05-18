@@ -121,15 +121,15 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
         }
     }
 
-    // Convert existing yellow warning to red.
+    // Convert existing yellow warning to selected colour class.
     if (PAGE === "DataEntry/record_home.php"){
-        $add_edit_red = ($override_project) ? $this -> getProjectSetting('convert-add-edit-red-project') : $this -> getProjectSetting('convert-add-edit-red');
-        if ($status == 0 && $add_edit_red) {
+        $add_edit_col = ($override_project) ? $this -> getProjectSetting('add-edit-col-project') : $this -> getProjectSetting('add-edit-col');
+        if ($status == 0 && isset($add_edit_col)) {
             echo "<script type='text/javascript'>
                 $(document).ready(function(){
                 var warning = $('div.projhdr').siblings('div.yellow')
                 warning.children('img').attr('src','" . APP_PATH_IMAGES . "exclamation_red.png')
-                warning.removeClass('yellow').addClass('red')
+                warning.removeClass('yellow').addClass('".$add_edit_col."')
                 });
                 </script>";
             }

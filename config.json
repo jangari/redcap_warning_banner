@@ -24,10 +24,40 @@
             "type": "descriptive"
         },
         {
-            "key": "convert-add-edit-red",
-            "name": "Convert <span class='yellow' class='yellow'>yellow</span> warning on Add/Edit record page to <span class='red'>red</span>",
-            "tt_name": "convert-add-edit-red",
-            "type": "checkbox"
+            "key": "add-edit-col",
+            "name": "Convert <span class='yellow' class='yellow'>yellow</span> warning on Add/Edit record page to: (Default: no change)",
+            "tt_name": "add-edit-col",
+            "type": "dropdown",
+            "choices": [
+                {
+                    "name": "Red",
+                    "value": "red"
+                },
+                {
+                    "name": "Orange",
+                    "value": "orange"
+                },
+                {
+                    "name": "Green",
+                    "value": "green"
+                },
+                {
+                    "name": "Darkgreen",
+                    "value": "darkgreen"
+                },
+                {
+                    "name": "Blue",
+                    "value": "blue"
+                },
+                {
+                    "name": "Brown",
+                    "value": "brown"
+                },
+                {
+                    "name": "Gray",
+                    "value": "gray"
+                }
+            ]
         },
         {
             "key": "enable-dev-warning-user",
@@ -316,11 +346,41 @@
                 "field": "override-project",
                 "value": true
             },
-            "key": "convert-add-edit-red-project",
+            "key": "add-edit-col-project",
             "super-users-only": true,
-            "name": "Convert <span class='yellow' class='yellow'>yellow</span> warning on Add/Edit record page to <span class='red'>red</span>",
-            "tt_name": "convert-add-edit-red",
-            "type": "checkbox"
+            "name": "Convert <span class='yellow' class='yellow'>yellow</span> warning on Add/Edit record page to (Default: no change)",
+            "tt_name": "add-edit-col",
+            "type": "dropdown",
+            "choices": [
+                {
+                    "name": "Red",
+                    "value": "red"
+                },
+                {
+                    "name": "Orange",
+                    "value": "orange"
+                },
+                {
+                    "name": "Green",
+                    "value": "green"
+                },
+                {
+                    "name": "Darkgreen",
+                    "value": "darkgreen"
+                },
+                {
+                    "name": "Blue",
+                    "value": "blue"
+                },
+                {
+                    "name": "Brown",
+                    "value": "brown"
+                },
+                {
+                    "name": "Gray",
+                    "value": "gray"
+                }
+            ]
         },
         {
             "branchingLogic": {
