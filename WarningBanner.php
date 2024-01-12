@@ -135,4 +135,61 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
             }
         }
     }
+
+    function redcap_data_entry_form_top($project_id=null) {
+
+            $show_banner = false;
+            $projectVals = Project::getProjectVals();
+            $status = $projectVals["status"];
+            $purpose = $projectVals["purpose"];
+            $override_project = $this -> getProjectSetting('override-project');
+
+            // Override if need be
+            if ($override_project){
+                $enable_dev_warning_user = $this -> getProjectSetting('enable-dev-warning-user-project');
+                $dev_warning_user_text = $this -> getProjectSetting('dev-warning-user-text-project');
+                $dev_warning_user_col = $this -> getProjectSetting('dev-warning-user-col-project');
+                $enable_practice_warning_user = $this -> getProjectSetting('enable-practice-warning-user-project');
+                $practice_warning_user_text = $this -> getProjectSetting('practice-warning-user-text-project');
+                $practice_warning_user_col = $this -> getProjectSetting('practice-warning-user-col-project');
+            } else {
+                $enable_dev_warning_user = $this -> getProjectSetting('enable-dev-warning-user');
+                $dev_warning_user_text = $this -> getProjectSetting('dev-warning-user-text');
+                $dev_warning_user_col = $this -> getProjectSetting('dev-warning-user-col');
+                $enable_practice_warning_user = $this -> getProjectSetting('enable-practice-warning-user');
+                $practice_warning_user_text = $this -> getProjectSetting('practice-warning-user-text');
+                $practice_warning_user_col = $this -> getProjectSetting('practice-warning-user-col');
+            }
+
+            // Apply warning text, either from default or system/project setting
+            $dev_warning_user_text = ($dev_warning_user_text != "") ? $dev_warning_user_text : $this -> tt('default-dev-warning-text');
+            $practice_warning_user_text = ($practice_warning_user_text != "") ? $practice_warning_user_text :$this -> tt('default-practice-warning-text');
+
+
+            // Test whether to show banner
+            if ($purpose == 0 && $enable_practice_warning_user){
+                $warning = $practice_warning_user_text;
+                $col = $practice_warning_user_col ?? "red";
+                $show_banner = true;
+            } elseif ($purpose != 0 && $status == 0 && $enable_dev_warning_user) {
+                $warning = $dev_warning_user_text;
+                $col = $dev_warning_user_col ?? "red";
+                $show_banner = true;
+            }
+
+            // Build and show
+            if ($show_banner) {
+            echo "<div id='warning-banner' class='".$col."' style='width:100%;max-width:790px;margin:15px 5px;display:none;'>
+            <img src='". APP_PATH_IMAGES ."exclamation_red.png' alt=''>
+            <span style='font-size:14px;'><b>".$this->tt("msg_warning").":</b> ".$warning."</span></div>";
+            echo "<script type='text/javascript'>
+                $(document).ready(function(){
+                    var banner = $('div#warning-banner');
+                    var targetDiv = $('div#form-title');
+                    banner.detach().insertBefore(targetDiv);
+                    banner.show();
+                });
+            </script>";
+        }
+    }
 }
