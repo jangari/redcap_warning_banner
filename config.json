@@ -4,12 +4,7 @@
     "namespace": "INTERSECT\\WarningBanner",
     "description": "Displays a warning banner in certain contexts, configured by an administrator. Examples include warning survey participants that the project is still in development, warning users that the project is a practice project and should not be used to collect data.",
     "tt_description": "description",
-    "framework-version": 7,
-    "permissions": [
-        "redcap_every_page_top",
-        "redcap_survey_page_top",
-        "redcap_data_entry_form_top"
-    ],
+    "framework-version": 12,
     "authors": [
         {
             "name": "Aidan Wilson",
@@ -32,31 +27,38 @@
             "choices": [
                 {
                     "name": "Red",
-                    "value": "red"
+                    "value": "red",
+                    "tt_nme": "red"
                 },
                 {
                     "name": "Orange",
-                    "value": "orange"
+                    "value": "orange",
+                    "tt_name": "orange"
                 },
                 {
                     "name": "Green",
-                    "value": "green"
+                    "value": "green",
+                    "tt_name": "green"
                 },
                 {
                     "name": "Darkgreen",
-                    "value": "darkgreen"
+                    "value": "darkgreen",
+                    "tt_name": "darkgreen"
                 },
                 {
                     "name": "Blue",
-                    "value": "blue"
+                    "value": "blue",
+                    "tt_name": "blue"
                 },
                 {
                     "name": "Brown",
-                    "value": "brown"
+                    "value": "brown",
+                    "tt_name": "brown"
                 },
                 {
                     "name": "Gray",
-                    "value": "gray"
+                    "value": "gray",
+                    "tt_name": "gray"
                 }
             ]
         },
@@ -355,31 +357,38 @@
             "choices": [
                 {
                     "name": "Red",
-                    "value": "red"
+                    "value": "red",
+                    "tt_nme": "red"
                 },
                 {
                     "name": "Orange",
-                    "value": "orange"
+                    "value": "orange",
+                    "tt_name": "orange"
                 },
                 {
                     "name": "Green",
-                    "value": "green"
+                    "value": "green",
+                    "tt_name": "green"
                 },
                 {
                     "name": "Darkgreen",
-                    "value": "darkgreen"
+                    "value": "darkgreen",
+                    "tt_name": "darkgreen"
                 },
                 {
                     "name": "Blue",
-                    "value": "blue"
+                    "value": "blue",
+                    "tt_name": "blue"
                 },
                 {
                     "name": "Brown",
-                    "value": "brown"
+                    "value": "brown",
+                    "tt_name": "brown"
                 },
                 {
                     "name": "Gray",
-                    "value": "gray"
+                    "value": "gray",
+                    "tt_name": "gray"
                 }
             ]
         },
