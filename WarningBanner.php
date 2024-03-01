@@ -1,4 +1,11 @@
 <?php
+/**
+ * Displays a warning banner for projects that are in development mode, or which have practice as their purpose.
+ * Warnings can be enabled or disabled, and customised, at the system level, and overriden at the project level by an administrator.
+ * The purpose is to discourage users from collecting real data in practice projects or development mode.
+ * @author Aidan Wilson <aidan.wilson@intersect.org.au>
+ * @link https://github.com/jangari/redcap_warning_banner
+ */
 
 namespace INTERSECT\WarningBanner;
 
@@ -7,104 +14,116 @@ use Project;
 
 class WarningBanner extends \ExternalModules\AbstractExternalModule {
 
-    function redcap_module_configure_button_display($project_id = null) {
+    function get_module_settings() {
+        // Define the settings
+        $settings = array();
+        // Override project settings with custom project settings
+        $settings['override_project'] = $this -> getProjectSetting('override-project');
+        if ($settings['override_project']) { // This block is not firing. 'override_project' is a boolean. How do I test this?
+            $settings['enable_dev_warning_survey'] = $this -> getProjectSetting('enable-dev-warning-survey-project');
+            $settings['dev_warning_survey_text'] = $this -> getProjectSetting('dev-warning-survey-text-project');
+            $settings['dev_warning_survey_col'] = $this -> getProjectSetting('dev-warning-survey-col-project');
+            $settings['enable_practice_warning_survey'] = $this -> getProjectSetting('enable-practice-warning-survey-project');
+            $settings['practice_warning_survey_text'] = $this -> getProjectSetting('practice-warning-survey-text-project');
+            $settings['practice_warning_survey_col'] = $this -> getProjectSetting('practice-warning-survey-col-project');
+            $settings['enable_dev_warning_user'] = $this -> getProjectSetting('enable-dev-warning-user-project');
+            $settings['dev_warning_user_text'] = $this -> getProjectSetting('dev-warning-user-text-project');
+            $settings['dev_warning_user_col'] = $this -> getProjectSetting('dev-warning-user-col-project');
+            $settings['enable_practice_warning_user'] = $this -> getProjectSetting('enable-practice-warning-user-project');
+            $settings['practice_warning_user_text'] = $this -> getProjectSetting('practice-warning-user-text-project');
+            $settings['practice_warning_user_col'] = $this -> getProjectSetting('practice-warning-user-col-project');
+            $settings['add_edit_col'] = $this -> getProjectSetting('add-edit-col-project'); 
+        } else {
+            $settings['enable_dev_warning_survey'] = $this -> getProjectSetting('enable-dev-warning-survey');
+            $settings['dev_warning_survey_text'] = $this -> getProjectSetting('dev-warning-survey-text');
+            $settings['dev_warning_survey_col'] = $this -> getProjectSetting('dev-warning-survey-col');
+            $settings['enable_practice_warning_survey'] = $this -> getProjectSetting('enable-practice-warning-survey');
+            $settings['practice_warning_survey_text'] = $this -> getProjectSetting('practice-warning-survey-text');
+            $settings['practice_warning_survey_col'] = $this -> getProjectSetting('practice-warning-survey-col');
+            $settings['enable_dev_warning_user'] = $this -> getProjectSetting('enable-dev-warning-user');
+            $settings['dev_warning_user_text'] = $this -> getProjectSetting('dev-warning-user-text');
+            $settings['dev_warning_user_col'] = $this -> getProjectSetting('dev-warning-user-col');
+            $settings['enable_practice_warning_user'] = $this -> getProjectSetting('enable-practice-warning-user');
+            $settings['practice_warning_user_text'] = $this -> getProjectSetting('practice-warning-user-text');
+            $settings['practice_warning_user_col'] = $this -> getProjectSetting('practice-warning-user-col');
+            $settings['add_edit_col'] = $this -> getProjectSetting('add-edit-col');
+        }
+        // set default text from tt array if unset in system or project module configuration
+        $settings['dev_warning_survey_text'] = ($settings['dev_warning_survey_text'] != "") ? $settings['dev_warning_survey_text'] : $this -> tt('default-dev-warning-text');
+        $settings['practice_warning_survey_text'] = ($settings['practice_warning_survey_text'] != "") ? $settings['practice_warning_survey_text'] : $this -> tt('default-practice-warning-text');
+        $settings['dev_warning_user_text'] = ($settings['dev_warning_user_text'] != "") ? $settings['dev_warning_user_text'] : $this -> tt('default-dev-warning-text');
+        $settings['practice_warning_user_text'] = ($settings['practice_warning_user_text'] != "") ? $settings['practice_warning_user_text'] : $this -> tt('default-practice-warning-text');
+
+        // set default colour from default if unset in system or project module configuration
+        $settings['add_edit_col'] = ($settings['add_edit_col'] != "") ? $settings['add_edit_col'] : "red";
+
+        // Echo out the settings array for debugging, printed in nice to read JSON format
+        echo "<script>console.log('WarningBanner: settings: ".json_encode($settings)."');</script>";
+        return $settings;
+    }
+
+    function redcap_module_configure_button_display() {
         // Only super users may configure on the project level.
         return defined("SUPER_USER") && SUPER_USER == 1 ? true : null;
     }
 
-    function redcap_survey_page_top($project_id, $record, $instrument, $event_id, $group_id, $survey_hash, $response_id, $repeat_instance)
-    {
-        $show_banner = false;
+    function redcap_survey_page_top() { 
+        // get settings
+        $settings = $this -> get_module_settings();
+
+        // Get project status and purpose
         $projectVals = Project::getProjectVals();
-        $status = $projectVals["status"];
-        $purpose = $projectVals["purpose"];
+        $project_values['status'] = $status;
+        $project_values['purpose'] = $purpose;
 
-        // Override if need be
-        $override_project = $this -> getProjectSetting('override-project');
-        if ($override_project){
-            $enable_dev_warning_survey = $this -> getProjectSetting('enable-dev-warning-survey-project');
-            $dev_warning_survey_text = $this -> getProjectSetting('dev-warning-survey-text-project');
-            $dev_warning_survey_col = $this -> getProjectSetting('dev-warning-survey-col-project');
-            $enable_practice_warning_survey = $this -> getProjectSetting('enable-practice-warning-survey-project');
-            $practice_warning_survey_text = $this -> getProjectSetting('practice-warning-survey-text-project');
-            $practice_warning_survey_col = $this -> getProjectSetting('practice-warning-survey-col-project');
-        } else {
-            $enable_dev_warning_survey = $this -> getProjectSetting('enable-dev-warning-survey');
-            $dev_warning_survey_text = $this -> getProjectSetting('dev-warning-survey-text');
-            $dev_warning_survey_col = $this -> getProjectSetting('dev-warning-survey-col');
-            $enable_practice_warning_survey = $this -> getProjectSetting('enable-practice-warning-survey');
-            $practice_warning_survey_text = $this -> getProjectSetting('practice-warning-survey-text');
-            $practice_warning_survey_col = $this -> getProjectSetting('practice-warning-survey-col');
-        }
-
-        // Apply warning text, either from default or system/project setting
-        $dev_warning_survey_text = ($dev_warning_survey_text != "") ? $dev_warning_survey_text : $this -> tt('default-dev-warning-text');
-        $practice_warning_survey_text = ($practice_warning_survey_text != "") ? $practice_warning_survey_text : $this -> tt('default-practice-warning-text');
+        // Initialise a bool to hide the banner by default
+        $show_banner = false;
 
         // Test whether to show banner
-        if ($purpose == 0 && $enable_practice_warning_survey){
-            $warning = $practice_warning_survey_text;
-            $col = $practice_warning_survey_col ?? "red";
+        if ($project_values['purpose'] == 0 && $settings['enable_practice_warning_survey']){
+            $warning = $settings['practice_warning_survey_text'];
+            $col = $settings['practice_warning_survey_col'] ?? "red";
             $show_banner = true;
-        } elseif ($purpose != 0 && $status == 0 && $enable_dev_warning_survey) {
-            $warning = $dev_warning_survey_text;
-            $col = $dev_warning_survey_col ?? "red";
+        } elseif ($project_values['purpose'] != 0 && $project_values['status'] == 0 && $settings['enable_dev_warning_survey']) {
+            $warning = $settings['dev_warning_survey_text'];
+            $col = $settings['dev_warning_survey_col'] ?? "red";
             $show_banner = true;
         }
 
         // Build and show
         if ($show_banner) {
-        echo "<div id='warning-banner' class='".$col."' style='margin:15px 15px 15px;'>
-        <img src='". APP_PATH_IMAGES ."exclamation_red.png' alt=''>
-        <span style='font-size:14px;'><b>".$this->tt("msg_warning").":</b> ".$warning."</span></div>";
+            echo "<div id='warning-banner' class='".$col."' style='margin:15px 15px 15px;'>
+            <img src='". APP_PATH_IMAGES ."exclamation_red.png' alt=''>
+            <span style='font-size:14px;'><b>".$this->tt("msg_warning").":</b> ".$warning."</span></div>";
         }
     }
 
-    function redcap_every_page_top($project_id=null) {
+    function redcap_every_page_top() {
 
-            $show_banner = false;
-            $projectVals = Project::getProjectVals();
-            $status = $projectVals["status"];
-            $purpose = $projectVals["purpose"];
-            $override_project = $this -> getProjectSetting('override-project');
+        // get settings and project vals
+        $settings = $this -> get_module_settings();
 
-        if (PAGE === "Surveys/invite_participants.php" && !($_GET["email_log"]) == '1'){ // Don't run on the Survey Invitation Log page
-
-            // Override if need be
-            if ($override_project){
-                $enable_dev_warning_user = $this -> getProjectSetting('enable-dev-warning-user-project');
-                $dev_warning_user_text = $this -> getProjectSetting('dev-warning-user-text-project');
-                $dev_warning_user_col = $this -> getProjectSetting('dev-warning-user-col-project');
-                $enable_practice_warning_user = $this -> getProjectSetting('enable-practice-warning-user-project');
-                $practice_warning_user_text = $this -> getProjectSetting('practice-warning-user-text-project');
-                $practice_warning_user_col = $this -> getProjectSetting('practice-warning-user-col-project');
-            } else {
-                $enable_dev_warning_user = $this -> getProjectSetting('enable-dev-warning-user');
-                $dev_warning_user_text = $this -> getProjectSetting('dev-warning-user-text');
-                $dev_warning_user_col = $this -> getProjectSetting('dev-warning-user-col');
-                $enable_practice_warning_user = $this -> getProjectSetting('enable-practice-warning-user');
-                $practice_warning_user_text = $this -> getProjectSetting('practice-warning-user-text');
-                $practice_warning_user_col = $this -> getProjectSetting('practice-warning-user-col');
-            }
-
-            // Apply warning text, either from default or system/project setting
-            $dev_warning_user_text = ($dev_warning_user_text != "") ? $dev_warning_user_text : $this -> tt('default-dev-warning-text');
-            $practice_warning_user_text = ($practice_warning_user_text != "") ? $practice_warning_user_text :$this -> tt('default-practice-warning-text');
+        // Get project status and purpose
+        $projectVals = Project::getProjectVals();
+        $project_values['status'] = $status;
+        $project_values['purpose'] = $purpose;
 
 
-            // Test whether to show banner
-            if ($purpose == 0 && $enable_practice_warning_user){
-                $warning = $practice_warning_user_text;
-                $col = $practice_warning_user_col ?? "red";
-                $show_banner = true;
-            } elseif ($purpose != 0 && $status == 0 && $enable_dev_warning_user) {
-                $warning = $dev_warning_user_text;
-                $col = $dev_warning_user_col ?? "red";
-                $show_banner = true;
-            }
+        // Initialise a bool to hide the banner by default
+        $show_banner = false;
 
-            // Build and show
-            if ($show_banner) {
+        // Test whether to show banner
+        if ($project_values['purpose'] == 0 && $settings['enable_practice_warning_user']){
+            $warning = $settings['practice_warning_user_text'];
+            $col = $settings['practice_warning_user_col'] ?? "red";
+            $show_banner = true;
+        } elseif ($project_values['purpose'] != 0 && $project_values['status'] == 0 && $settings['enable_dev_warning_user']) {
+            $warning = $settings['dev_warning_user_text'];
+            $col = $settings['dev_warning_user_col'] ?? "red";
+            $show_banner = true;
+        }
+
+        if (PAGE === "Surveys/invite_participants.php" && !($_GET["email_log"]) == '1' && $show_banner){ // Don't run on the Survey Invitation Log page
             echo "<div id='warning-banner' class='".$col."' style='width:100%;max-width:902px;margin:15px 0px 15px;display:none;'>
             <img src='". APP_PATH_IMAGES ."exclamation_red.png' alt=''>
             <span style='font-size:14px;'><b>".$this->tt("msg_warning").":</b> ".$warning."</span></div>";
@@ -119,66 +138,60 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
                 });
             </script>";
         }
-    }
 
-    // Convert existing yellow warning to selected colour class.
-    if (PAGE === "DataEntry/record_home.php"){
-        $add_edit_col = ($override_project) ? $this -> getProjectSetting('add-edit-col-project') : $this -> getProjectSetting('add-edit-col');
-        if ($status == 0 && isset($add_edit_col)) {
-            echo "<script type='text/javascript'>
-                $(document).ready(function(){
-                var warning = $('div.projhdr').siblings('div.yellow')
-                warning.children('img').attr('src','" . APP_PATH_IMAGES . "exclamation_red.png')
-                warning.removeClass('yellow').addClass('".$add_edit_col."')
-                });
+        if (PAGE === "DataEntry/record_home.php" && $show_banner){ // Record home page.
+            // Build and show
+            if ($show_banner) {
+                echo "<div id='warning-banner' class='".$col."' style='width:100%;max-width:700px;margin:15px 0px 15px;display:none;'>
+                <img src='". APP_PATH_IMAGES ."exclamation_red.png' alt=''>
+                <span style='font-size:14px;'><b>".$this->tt("msg_warning").":</b> ".$warning."</span></div>";
+                echo "<script type='text/javascript'>
+                    $(document).ready(function(){
+                        var banner = $('div#warning-banner');
+                        var targetDiv = $('div#record_display_name');
+                        banner.detach().insertBefore(targetDiv);
+                        banner.show();
+                    });
+                </script>";
+            }
+            // Convert existing yellow warning to selected colour class.
+            if ($project_values['status'] == 0 && isset($settings['add_edit_col'])) {
+                echo "<script type='text/javascript'>
+                    $(document).ready(function(){
+                    var warning = $('div.projhdr').siblings('div.yellow')
+                    warning.children('img').attr('src','" . APP_PATH_IMAGES . "exclamation_red.png')
+                    warning.removeClass('yellow').addClass('".$settings['add_edit_col']."')
+                    });
                 </script>";
             }
         }
     }
+    
+    function redcap_data_entry_form_top() {
+        // get module settings
+        $settings = $this -> get_module_settings();
 
-    function redcap_data_entry_form_top($project_id=null) {
+        // Get project status and purpose
+        $projectVals = Project::getProjectVals();
+        $project_values['status'] = $status;
+        $project_values['purpose'] = $purpose;
 
-            $show_banner = false;
-            $projectVals = Project::getProjectVals();
-            $status = $projectVals["status"];
-            $purpose = $projectVals["purpose"];
-            $override_project = $this -> getProjectSetting('override-project');
+        // Initialise a bool to hide the banner by default
+        $show_banner = false;
 
-            // Override if need be
-            if ($override_project){
-                $enable_dev_warning_user = $this -> getProjectSetting('enable-dev-warning-user-project');
-                $dev_warning_user_text = $this -> getProjectSetting('dev-warning-user-text-project');
-                $dev_warning_user_col = $this -> getProjectSetting('dev-warning-user-col-project');
-                $enable_practice_warning_user = $this -> getProjectSetting('enable-practice-warning-user-project');
-                $practice_warning_user_text = $this -> getProjectSetting('practice-warning-user-text-project');
-                $practice_warning_user_col = $this -> getProjectSetting('practice-warning-user-col-project');
-            } else {
-                $enable_dev_warning_user = $this -> getProjectSetting('enable-dev-warning-user');
-                $dev_warning_user_text = $this -> getProjectSetting('dev-warning-user-text');
-                $dev_warning_user_col = $this -> getProjectSetting('dev-warning-user-col');
-                $enable_practice_warning_user = $this -> getProjectSetting('enable-practice-warning-user');
-                $practice_warning_user_text = $this -> getProjectSetting('practice-warning-user-text');
-                $practice_warning_user_col = $this -> getProjectSetting('practice-warning-user-col');
-            }
+        // Test whether to show banner
+        if ($project_values['purpose'] == 0 && $settings['enable_practice_warning_user']){
+            $warning = $settings['practice_warning_user_text'];
+            $col = $settings['practice_warning_user_col'] ?? "red";
+            $show_banner = true;
+        } elseif ($project_values['purpose'] != 0 && $project_values['status'] == 0 && $settings['enable_dev_warning_user']) {
+            $warning = $settings['dev_warning_user_text'];
+            $col = $settings['dev_warning_user_col'] ?? "red";
+            $show_banner = true;
+        }
 
-            // Apply warning text, either from default or system/project setting
-            $dev_warning_user_text = ($dev_warning_user_text != "") ? $dev_warning_user_text : $this -> tt('default-dev-warning-text');
-            $practice_warning_user_text = ($practice_warning_user_text != "") ? $practice_warning_user_text :$this -> tt('default-practice-warning-text');
-
-
-            // Test whether to show banner
-            if ($purpose == 0 && $enable_practice_warning_user){
-                $warning = $practice_warning_user_text;
-                $col = $practice_warning_user_col ?? "red";
-                $show_banner = true;
-            } elseif ($purpose != 0 && $status == 0 && $enable_dev_warning_user) {
-                $warning = $dev_warning_user_text;
-                $col = $dev_warning_user_col ?? "red";
-                $show_banner = true;
-            }
-
-            // Build and show
-            if ($show_banner) {
+        // Build and show
+        if ($show_banner) {
             echo "<div id='warning-banner' class='".$col."' style='width:100%;max-width:790px;margin:15px 5px;display:none;'>
             <img src='". APP_PATH_IMAGES ."exclamation_red.png' alt=''>
             <span style='font-size:14px;'><b>".$this->tt("msg_warning").":</b> ".$warning."</span></div>";
