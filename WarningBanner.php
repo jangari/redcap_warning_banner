@@ -57,8 +57,6 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
         // set default colour from default if unset in system or project module configuration
         $settings['add_edit_col'] = ($settings['add_edit_col'] != "") ? $settings['add_edit_col'] : "red";
 
-        // Echo out the settings array for debugging, printed in nice to read JSON format
-        echo "<script>console.log('WarningBanner: settings: ".json_encode($settings)."');</script>";
         return $settings;
     }
 
@@ -72,19 +70,17 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
         $settings = $this -> get_module_settings();
 
         // Get project status and purpose
-        $projectVals = Project::getProjectVals();
-        $project_values['status'] = $status;
-        $project_values['purpose'] = $purpose;
+        $project_values = Project::getProjectVals();
 
         // Initialise a bool to hide the banner by default
         $show_banner = false;
 
         // Test whether to show banner
-        if ($project_values['purpose'] == 0 && $settings['enable_practice_warning_survey']){
+        if (isset($project_values['purpose']) && $project_values['purpose'] == 0 && $settings['enable_practice_warning_survey']){
             $warning = $settings['practice_warning_survey_text'];
             $col = $settings['practice_warning_survey_col'] ?? "red";
             $show_banner = true;
-        } elseif ($project_values['purpose'] != 0 && $project_values['status'] == 0 && $settings['enable_dev_warning_survey']) {
+        } elseif (isset($project_values['purpose']) && $project_values['purpose'] != 0 && isset($project_values['status']) && $project_values['status'] == 0 && $settings['enable_dev_warning_survey']) {
             $warning = $settings['dev_warning_survey_text'];
             $col = $settings['dev_warning_survey_col'] ?? "red";
             $show_banner = true;
@@ -104,20 +100,17 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
         $settings = $this -> get_module_settings();
 
         // Get project status and purpose
-        $projectVals = Project::getProjectVals();
-        $project_values['status'] = $status;
-        $project_values['purpose'] = $purpose;
-
+        $project_values = Project::getProjectVals();
 
         // Initialise a bool to hide the banner by default
         $show_banner = false;
 
         // Test whether to show banner
-        if ($project_values['purpose'] == 0 && $settings['enable_practice_warning_user']){
+        if (isset($project_values['purpose']) && $project_values['purpose'] == 0 && $settings['enable_practice_warning_user']){
             $warning = $settings['practice_warning_user_text'];
             $col = $settings['practice_warning_user_col'] ?? "red";
             $show_banner = true;
-        } elseif ($project_values['purpose'] != 0 && $project_values['status'] == 0 && $settings['enable_dev_warning_user']) {
+        } elseif (isset($project_values['purpose']) && $project_values['purpose'] != 0 && isset($project_values['status']) && $project_values['status'] == 0 && $settings['enable_dev_warning_user']) {
             $warning = $settings['dev_warning_user_text'];
             $col = $settings['dev_warning_user_col'] ?? "red";
             $show_banner = true;
@@ -172,19 +165,17 @@ class WarningBanner extends \ExternalModules\AbstractExternalModule {
         $settings = $this -> get_module_settings();
 
         // Get project status and purpose
-        $projectVals = Project::getProjectVals();
-        $project_values['status'] = $status;
-        $project_values['purpose'] = $purpose;
+        $project_values = Project::getProjectVals();
 
         // Initialise a bool to hide the banner by default
         $show_banner = false;
 
         // Test whether to show banner
-        if ($project_values['purpose'] == 0 && $settings['enable_practice_warning_user']){
+        if (isset($project_values['purpose']) && $project_values['purpose'] == 0 && $settings['enable_practice_warning_user']){
             $warning = $settings['practice_warning_user_text'];
             $col = $settings['practice_warning_user_col'] ?? "red";
             $show_banner = true;
-        } elseif ($project_values['purpose'] != 0 && $project_values['status'] == 0 && $settings['enable_dev_warning_user']) {
+        } elseif (isset($project_values['purpose']) && $project_values['purpose'] != 0 && isset($project_values['status']) && $project_values['status'] == 0 && $settings['enable_dev_warning_user']) {
             $warning = $settings['dev_warning_user_text'];
             $col = $settings['dev_warning_user_col'] ?? "red";
             $show_banner = true;
